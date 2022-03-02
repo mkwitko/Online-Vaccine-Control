@@ -1,0 +1,7 @@
+{
+  "name": "vacinas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

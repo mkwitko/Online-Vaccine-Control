@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "vacinas",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
