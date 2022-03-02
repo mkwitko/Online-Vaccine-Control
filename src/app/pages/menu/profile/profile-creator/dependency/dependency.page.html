@@ -1,0 +1,10 @@
+<app-my-header url="profile" title="Dependentes"></app-my-header>
+<ion-content>
+
+  <ng-container *ngIf="data.length === 0">
+    <app-skeleton-card></app-skeleton-card>
+  </ng-container>
+
+
+  <app-fab url="profile/dependency-add"></app-fab>
+</ion-content>

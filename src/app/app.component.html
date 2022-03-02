@@ -1,3 +1,21 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="menu-content">
+    <ion-menu contentId="menu-content" menuId="menu-content" side="start" type="overlay">
+      <ion-content>
+        <ng-container *ngFor="let a of itens">
+          <ion-item class="ion-margin-top" button (click)="changePage(a.path)" routerLinkActive="active">
+            <ion-icon slot="start" name={{a.icon}}></ion-icon>
+            <ion-label>{{a.name}}</ion-label>
+          </ion-item>
+        </ng-container>
+      </ion-content>
+      <ion-footer>
+        <ion-item class="menu-items" button (click)="logout()">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          <ion-label>LOGOUT</ion-label>
+        </ion-item>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="menu-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

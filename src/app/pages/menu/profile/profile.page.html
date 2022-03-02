@@ -1,0 +1,16 @@
+<app-my-header title="Perfil"></app-my-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <app-card [cardPath]="responsiblePath"></app-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <app-card [cardPath]="childPath"></app-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

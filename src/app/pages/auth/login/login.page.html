@@ -1,0 +1,26 @@
+<app-my-header [menu]="false" title="Login"></app-my-header>
+
+<ion-content>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item *ngIf="user">
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input [(ngModel)]="user.userEmail" type="email"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="user">
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input [(ngModel)]="user.userPassword" type="password"></ion-input>
+          </ion-item>
+          <ion-button (click)="login()" expand="block" class="ion-margin-top" color="primary">
+            Login
+          </ion-button>
+          <ion-button (click)="changePage('register')" expand="block" class="ion-margin-top" color="light">
+            Registrar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

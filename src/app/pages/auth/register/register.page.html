@@ -1,0 +1,34 @@
+<app-my-header [menu]="false" title="Cadastro" url="login"></app-my-header>
+
+<ion-content>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">E-mail*</ion-label>
+            <ion-input [(ngModel)]="user.userEmail" type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nome Completo*</ion-label>
+            <ion-input [(ngModel)]="user.userFullName" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Senha*</ion-label>
+            <ion-input [(ngModel)]="user.userPassword" type="password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Confirmar Senha*</ion-label>
+            <ion-input [(ngModel)]="user.userPasswordConfirm" type="password"></ion-input>
+          </ion-item>
+          <ion-button (click)="register()" expand="block" class="ion-margin-top" color="primary">
+            Criar Conta
+          </ion-button>
+          <ion-button (click)="changePage('login')" expand="block" class="ion-margin-top" color="light">
+            Voltar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
