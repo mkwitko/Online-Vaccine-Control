@@ -23,6 +23,7 @@ import { MyNavigationService } from '../navigation/my-navigation.service';
 })
 export class AuthService {
 
+  public id: string;
   private readonly auth: Auth;
 
   constructor(
@@ -120,5 +121,9 @@ export class AuthService {
 
   async getUser(){
     return await this.auth.currentUser;
+  }
+
+  async getId(){
+    return await this.auth.currentUser.uid;
   }
 }

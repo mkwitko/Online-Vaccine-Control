@@ -1,3 +1,4 @@
+import { ResponsibleClass } from './../../../../../classes/menu/profile/profile-creator/responsible';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResponsiblesAddPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public myClass: ResponsibleClass
+  ) { }
 
   ngOnInit() {
+    this.myClass.getData();
   }
 
 }

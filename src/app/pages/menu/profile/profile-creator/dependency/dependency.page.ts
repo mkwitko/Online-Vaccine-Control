@@ -1,3 +1,4 @@
+import { DependencyClass } from 'src/app/classes/menu/profile/profile-creator/dependency';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DependencyPage implements OnInit {
 
-  public data = [];
-
-  constructor() { }
+  constructor(
+    public myClass: DependencyClass
+  ) { }
 
   ngOnInit() {
+    this.myClass.getData();
   }
+
 
 }

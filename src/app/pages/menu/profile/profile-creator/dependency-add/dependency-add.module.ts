@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { DependencyAddPageRoutingModule } from './dependency-add-routing.module';
 
 import { DependencyAddPage } from './dependency-add.page';
+import { MyFormModule } from 'src/app/components/forms/form/forms.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DependencyAddPage } from './dependency-add.page';
     FormsModule,
     IonicModule,
     DependencyAddPageRoutingModule,
-    MyHeaderModule
+    MyHeaderModule,
+    MyFormModule
   ],
   declarations: [DependencyAddPage]
 })

@@ -13,6 +13,7 @@ import { AngularFireModule } from '@angular/fire/compat';                // Main
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Needed if Firestore is going to be used
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'; // Needed if Storage is going to be used
 import { environment } from 'src/environments/environment';              // Firebase Configs
+import { ClassModuleModule } from './modules/class/class-module/class-module.module';
 
 
 @NgModule({
@@ -21,9 +22,14 @@ import { environment } from 'src/environments/environment';              // Fire
   imports: [BrowserModule,
     IonicModule.forRoot({ swipeBackEnabled: false }),
     AppRoutingModule,
+
+    //FIREBASE
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
+
+    //MODULES
+    ClassModuleModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

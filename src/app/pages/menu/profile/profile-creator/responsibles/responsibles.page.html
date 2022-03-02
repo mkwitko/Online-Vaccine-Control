@@ -2,9 +2,34 @@
 
 <ion-content>
 
-  <ng-container *ngIf="data.length === 0">
+  <ng-container *ngIf="!myClass.data">
     <app-skeleton-card></app-skeleton-card>
   </ng-container>
+
+  <ng-container *ngIf="myClass.data">
+
+    <ng-container *ngIf="myClass.data.length === 0">
+      <app-skeleton-card></app-skeleton-card>
+    </ng-container>
+
+    <ng-container *ngIf="myClass.data.length > 0">
+      <ion-grid fixed>
+        <ion-row>
+          <ng-container *ngFor="let item of myClass.cardData">
+            <ion-col size="12">
+              <app-card [cardPath]="item">
+
+              </app-card>
+            </ion-col>
+          </ng-container>
+
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+
+
+  </ng-container>
+
 
   <app-fab url="profile/responsibles-add"></app-fab>
 </ion-content>

@@ -73,6 +73,7 @@ export class AppComponent {
   {
     this.auth.getAuth().onAuthStateChanged(user => {
       this.menuBool = !user;
+      this.auth.id = user.uid;
     });
   }
 

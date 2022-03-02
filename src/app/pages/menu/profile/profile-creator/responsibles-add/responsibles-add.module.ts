@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ResponsiblesAddPageRoutingModule } from './responsibles-add-routing.module';
 
 import { ResponsiblesAddPage } from './responsibles-add.page';
+import { MyFormModule } from 'src/app/components/forms/form/forms.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ResponsiblesAddPage } from './responsibles-add.page';
     FormsModule,
     IonicModule,
     ResponsiblesAddPageRoutingModule,
-    MyHeaderModule
+    MyHeaderModule,
+    MyFormModule
   ],
   declarations: [ResponsiblesAddPage]
 })
