@@ -1,0 +1,34 @@
+<div class="wraper">
+  <ng-container *ngFor="let itemType of types">
+    <ion-accordion-group>
+        <ion-accordion class="ion-margin-top" value="colors" toggle-icon="arrow-down-circle">
+            <ion-item color="primary" slot="header" class="ion-margin-start ion-margin-end">
+              <ion-label>{{itemType.name}}</ion-label>
+            </ion-item>
+
+            <ion-list slot="content" *ngIf="itemType.vaccines.length > 0">
+              <ion-card *ngFor="let item of itemType.vaccines">
+                <ion-item>
+                  <ion-icon color="primary" name="medkit" slot="start"></ion-icon>
+                  <ion-label>{{item.nome}}</ion-label>
+                  <ion-button fill="outline" slot="end">Dose {{item.dose}}</ion-button>
+                  <ion-button color="secondary"
+                  *ngIf="item.reinforcment && item.reinforcment === true"
+                  fill="outline" slot="end">Reforço</ion-button>
+                </ion-item>
+
+                <ion-card-content>
+                  <p *ngIf="!item.reinforcment || item.reinforcment === false">
+                    Esta é a dose de número {{item.dose}} de um total de {{item.dosesTotais}} doses da vacina {{item.nome}}
+                  </p>
+                  <p *ngIf="item.reinforcment && item.reinforcment === true">
+                    Esta é uma dose de reforço de número {{item.dose}} de um total de {{item.dosesTotais}} doses da vacina {{item.nome}}
+                  </p>
+                </ion-card-content>
+              </ion-card>
+            </ion-list>
+        </ion-accordion>
+    </ion-accordion-group>
+  </ng-container>
+
+</div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -16,6 +16,17 @@ import { environment } from 'src/environments/environment';              // Fire
 import { ClassModuleModule } from './modules/class/class-module/class-module.module';
 
 
+//CHART
+import { NgChartsModule } from 'ng2-charts';
+import 'chartjs-plugin-zoom';
+import { DatePipe } from '@angular/common';
+
+import { registerLocaleData } from '@angular/common';
+import localePT from '@angular/common/locales/pt';
+registerLocaleData(localePT);
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,9 +40,15 @@ import { ClassModuleModule } from './modules/class/class-module/class-module.mod
     AngularFireStorageModule,
 
     //MODULES
-    ClassModuleModule
+    ClassModuleModule,
+
+    //CHART
+    NgChartsModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+   { provide: LOCALE_ID, useValue: 'pt-br' },
+   DatePipe
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -13,7 +13,6 @@ export class ResponsiblesAddPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.myClass.getData();
   }
 
 }

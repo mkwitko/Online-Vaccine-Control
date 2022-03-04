@@ -1,14 +1,17 @@
 import { MenuService } from './services/menu/menu.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/firebase/auth.service';
 import { MyNavigationService } from './services/navigation/my-navigation.service';
+import { CrudService } from './services/firebase/crud.service';
+import { VaccineClass } from './classes/vaccines/vaccine-class';
+import { VaccineListService } from './services/vaccine/vaccine-list.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   public menuBool = false;
 
@@ -68,13 +71,18 @@ export class AppComponent {
   constructor(
     private menuCtrl: MenuService,
     private auth: AuthService,
-    private nav: MyNavigationService
+    private nav: MyNavigationService,
+    private vaccineClass: VaccineClass
   )
   {
     this.auth.getAuth().onAuthStateChanged(user => {
       this.menuBool = !user;
       this.auth.id = user.uid;
     });
+  }
+
+  ngOnInit(): void {
+    this.vaccineClass.callAll();
   }
 
   changePage(url: string){

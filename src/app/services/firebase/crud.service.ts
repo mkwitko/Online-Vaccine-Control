@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ScreenService } from '../screen/screen.service';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class CrudService {
   constructor(
     private afs: AngularFirestore,
     private afst: AngularFireStorage,
-    private screen: ScreenService
+    private screen: ScreenService,
+    private auth: AuthService
   ) { }
 
   collectionConstructor<T>(name){
@@ -24,7 +26,8 @@ export class CrudService {
       map(actions => actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-          return { id, ...data };
+          const creatorId = this.auth.id;
+          return { id, creatorId, ...data };
         }))
     );
   }

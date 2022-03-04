@@ -5,6 +5,7 @@ import { ScreenService } from 'src/app/services/screen/screen.service';
 import { Injectable } from '@angular/core';
 import { FormInterface } from 'src/app/interfaces/forms/form-interface';
 import { Card } from 'src/app/interfaces/card/card';
+import { AuthService } from 'src/app/services/firebase/auth.service';
 
 @Injectable()
 export class ResponsibleClass {
@@ -66,37 +67,33 @@ export class ResponsibleClass {
       field: 'birthday',
       required: false
     }
-    ,
-    {
-      name: 'Foto',
-      type: 'file',
-      position: 'fixed',
-      answer: '',
-      field: 'picture',
-      required: false,
-      accept: 'image/*'
-    }
   ];
 
   public collection: AngularFirestoreCollection;
   public ref = 'Responsavel';
-  public data: any;
+  public data: any = [];
   public cardData: Card[] = [];
+  public username: string;
 
   constructor(
     private crud: CrudService,
-    private screen: ScreenService
+    private screen: ScreenService,
+    private auth: AuthService
   )
   {
     this.collection = this.crud.collectionConstructor<ResponsibleInt>(this.ref);
   }
 
   public async getData(){
-    console.log('Call get data');
-    await this.screen.presentLoading();
     try {
       await this.crud.getAll(this.collection).subscribe(res => {
-        this.data = res;
+        this.data = [];
+        for(const a of res){
+          if(a.creatorId === this.auth.id){
+            this.data.push(a);
+          }
+        }
+        this.getUsername();
         try
         {
           this.pushCards();
@@ -104,12 +101,10 @@ export class ResponsibleClass {
         catch (error){
           this.screen.presentToast(error);
         }
-        this.screen.loading.dismiss();
         return this.data;
       });
     } catch (error){
       this.screen.presentToast(error);
-      await this.screen.loading.dismiss();
       return false;
     }
   }
@@ -163,6 +158,15 @@ export class ResponsibleClass {
     this.cardData = [];
     for(const a of this.data){
      this.cardData.push(this.createCards(a));
+    }
+  }
+
+  private getUsername(){
+    for(const a of this.data){
+      if(a.id === this.auth.id){
+        console.log(a);
+        this.username = a.fullName;
+      }
     }
   }
 }

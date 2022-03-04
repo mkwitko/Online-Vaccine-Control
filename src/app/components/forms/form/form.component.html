@@ -1,6 +1,6 @@
 <ion-list class="ion-margin">
   <ng-container *ngFor="let item of fields">
-    <ion-item *ngIf="!item.check && !item.select" class="ion-margin-top">
+    <ion-item *ngIf="!item.check && !item.select && item.type !== 'dateTime'">
 
               <!-- Required item -->
         <ion-label *ngIf="item.required" position="{{item.position}}">{{item.name}} *</ion-label>
@@ -38,12 +38,37 @@
         </ion-select>
     </ion-item>
 
+    <!-- Date Time -->
+    <ng-container *ngIf="item.type === 'dateTime'" locale="pt-BR">
+      <ion-item class="ion-margin-top">
+
+        <ion-input placeholder="Data de Nascimento"[ngModel]="item.answer | date: 'dd/MM/yyyy'"></ion-input>
+
+        <ion-button fill="clear" id="open-date-input-2">
+          <ion-icon icon="calendar"></ion-icon>
+        </ion-button>
+
+        <ion-popover trigger="open-date-input-2" show-backdrop="true" size="auto">
+          <ng-template>
+            <ion-datetime
+            [(ngModel)]="item.answer"
+            mode="md" size="cover"
+            showClearButton
+            clearText="Limpar"
+            color="secondary"
+            #popoverDatetime2
+            presentation="date"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+    </ng-container>
 
   </ng-container>
 
   <p class="button ion-margin">
     <ion-button (click)="submit()">
-      <ion-label color="light">Enviar</ion-label>
+      <ion-label>Enviar</ion-label>
     </ion-button>
   </p>
 </ion-list>

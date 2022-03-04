@@ -1,0 +1,36 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <ng-container *ngIf="myClass.dependencyClass.data">
+        <ng-container *ngIf="myClass.dependencyClass.data.length === 0">
+          <app-skeleton-card></app-skeleton-card>
+        </ng-container>
+        <ng-container *ngIf="myClass.dependencyClass.data.length > 0">
+          <h2 class="ion-text-center"> Seja Bem Vindo {{myClass.responsibleClass.username}} </h2>
+          <ion-slides mode="ios" pager="ios" scrollbar="ios">
+            <ng-container *ngFor="let item of myClass.dependencyClass.data">
+              <ion-slide>
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-subtitle class="ion-text-start">{{item.birthday}}</ion-card-subtitle>
+                    <ion-card-title class="ion-text-start">
+                      {{item.fullName}}
+                    </ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <canvas baseChart  width="400" height="100"
+                      [data]="pieChartData"
+                      [type]="pieChartType"
+                      [options]="pieChartOptions">
+                  </canvas>
+                  </ion-card-content>
+                </ion-card>
+              </ion-slide>
+            </ng-container>
+          </ion-slides>
+        </ng-container>
+      </ng-container>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>

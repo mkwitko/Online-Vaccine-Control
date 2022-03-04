@@ -13,7 +13,6 @@ export class DependencyPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.myClass.getData();
   }
 
 

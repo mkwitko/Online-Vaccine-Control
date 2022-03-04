@@ -1,3 +1,4 @@
+import { VaccineClass } from './../../../classes/vaccines/vaccine-class';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VaccinesTablePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public vaccineClass: VaccineClass
+  ) { }
 
   ngOnInit() {
   }

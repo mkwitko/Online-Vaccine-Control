@@ -5,6 +5,8 @@ import { ScreenService } from 'src/app/services/screen/screen.service';
 import { Injectable } from '@angular/core';
 import { FormInterface } from 'src/app/interfaces/forms/form-interface';
 import { Card } from 'src/app/interfaces/card/card';
+import { AuthService } from 'src/app/services/firebase/auth.service';
+import { DateCalcService } from 'src/app/services/date/date-calc.service';
 
 @Injectable()
 export class DependencyClass {
@@ -28,42 +30,37 @@ export class DependencyClass {
     },
     {
       name: 'Data de Nascimento',
-      type: 'text',
-      position: 'floating',
+      type: 'dateTime',
       answer: '',
       field: 'birthday',
-      required: false
-    }
-    ,
-    {
-      name: 'Foto',
-      type: 'file',
-      position: 'fixed',
-      answer: '',
-      field: 'picture',
-      required: false,
-      accept: 'image/*'
+      required: true
     }
   ];
 
   public collection: AngularFirestoreCollection;
   public ref = 'Dependentes';
-  public data: any;
+  public data: any = [];
   public cardData: Card[] = [];
 
   constructor(
     private crud: CrudService,
-    private screen: ScreenService
+    private screen: ScreenService,
+    private auth: AuthService,
+    private date: DateCalcService
   )
   {
     this.collection = this.crud.collectionConstructor<DependencyInt>(this.ref);
   }
 
-  public async getData(){
-    await this.screen.presentLoading();
+  public getData(){
     try {
-      await this.crud.getAll(this.collection).subscribe(res => {
-        this.data = res;
+      this.crud.getAll(this.collection).subscribe(res => {
+        this.data = [];
+        for(const a of res){
+          if(a.creatorId === this.auth.id){
+            this.data.push(a);
+          }
+        }
         try
         {
           this.pushCards();
@@ -71,14 +68,19 @@ export class DependencyClass {
         catch (error){
           this.screen.presentToast(error);
         }
-        this.screen.loading.dismiss();
         return this.data;
       });
     } catch (error){
       this.screen.presentToast(error);
-      await this.screen.loading.dismiss();
-      return false;
+      return;
     }
+    return;
+  }
+
+  callUpdate(object: DependencyInt){
+    this.crud.update(this.collection, object, object.id).then(() => {
+      console.log('Updated! ', object);
+    });
   }
 
   public call(object){
@@ -107,6 +109,9 @@ export class DependencyClass {
     }
     if(item.birthday){
       object.subtitle = item.birthday;
+    }
+    if(item.age){
+      object.subsubTitle = item.age;
     }
     if(item.picture){
       object.image = item.picture;

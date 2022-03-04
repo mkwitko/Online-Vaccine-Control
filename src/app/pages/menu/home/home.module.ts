@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
+import { MyVaccinesTakenModule } from 'src/app/components/charts/vaccines-taken/vaccines-taken.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { HomePage } from './home.page';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    MyHeaderModule
+    MyHeaderModule,
+    MyVaccinesTakenModule
   ],
   declarations: [HomePage]
 })

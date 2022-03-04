@@ -9,7 +9,19 @@ ion-card {
   }
 
   ion-card-subtitle {
+
+    ion-label {
+      display: inline;
+    }
+  }
+
+  .low {
     font-size: 1.3vh;
+  }
+
+  .high {
+    font-size: 1.5vh;
+    font-weight: 800;
   }
 
   ion-card-content {

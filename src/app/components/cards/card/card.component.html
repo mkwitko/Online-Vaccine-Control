@@ -4,8 +4,13 @@
 
     <ion-card-header>
 
-      <ion-card-subtitle *ngIf="cardPath.subtitle">
-        {{cardPath.subtitle}}
+      <ion-card-subtitle *ngIf="cardPath.subtitle || cardPath.subsubTitle">
+        <ion-label *ngIf="cardPath.subtitle" class="low">
+          {{cardPath.subtitle}}
+        </ion-label>
+        <ion-label *ngIf="cardPath.subsubTitle" class="float-right high">
+          {{cardPath.subsubTitle}}
+        </ion-label>
       </ion-card-subtitle>
 
       <ion-card-title class="ion-margin-top" *ngIf="cardPath.title">

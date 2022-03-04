@@ -1,3 +1,4 @@
+import { MyAccordionModule } from './../../../components/accordion/accordion/accordion.module';
 import { MyHeaderModule } from './../../../components/header/my-header/my-header.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,8 @@ import { VaccinesTablePage } from './vaccines-table.page';
     FormsModule,
     IonicModule,
     VaccinesTablePageRoutingModule,
-    MyHeaderModule
+    MyHeaderModule,
+    MyAccordionModule
   ],
   declarations: [VaccinesTablePage]
 })
